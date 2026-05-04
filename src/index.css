@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+
+  --color-bg: #f7f6f2;
+  --color-sur: #ffffff;
+  --color-sur2: #f2f1ed;
+  --color-sur3: #eae9e4;
+  --color-bdr: #e4e3dd;
+  --color-bdr2: #d4d3cc;
+  --color-txt: #1c2333;
+  --color-txm: #4a5568;
+  --color-txd: #9aa5b4;
+  --color-txl: #c4c9d4;
+  --color-ink: #1e2d4a;
+  --color-ink2: #2d4270;
+
+  --color-amber: #c2820a;
+  --color-amber-bg: #fef8ec;
+  --color-amber-bdr: #f6d88a;
+  --color-green: #1a7f4b;
+  --color-green-bg: #edfaf3;
+  --color-green-bdr: #86e0b4;
+  --color-red: #b91c1c;
+  --color-red-bg: #fef2f2;
+  --color-red-bdr: #fca5a5;
+  --color-blue: #1d4ed8;
+  --color-blue-bg: #eff6ff;
+  --color-blue-bdr: #bfdbfe;
+
+  --color-mol: #1d6fa4;
+  --color-fin: #7c3d8c;
+  --color-ins: #1a6b4a;
+  --color-dis: #b45309;
+  --color-rw: #c2410c;
+  --color-rej: #991b1b;
+}
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-txt);
+  font-family: var(--font-sans);
+  font-size: 13px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--color-sur2); }
+::-webkit-scrollbar-thumb { background: var(--color-bdr2); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-txd); }
+
+/* Progress bar */
+.pbar-wrap {
+  display: inline-block; width: 72px; height: 5px;
+  background: var(--color-bdr2); border-radius: 2px;
+  vertical-align: middle; overflow: hidden;
+}
+.pbar { height: 100%; border-radius: 2px; transition: width 0.4s ease; }
+
+/* Badge */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 8px; border-radius: 4px;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.3px; white-space: nowrap;
+}
+.badge-red { background: var(--color-red-bg); color: var(--color-red); border: 1px solid var(--color-red-bdr); }
+.badge-amber { background: var(--color-amber-bg); color: var(--color-amber); border: 1px solid var(--color-amber-bdr); }
+.badge-green { background: var(--color-green-bg); color: var(--color-green); border: 1px solid var(--color-green-bdr); }
+.badge-blue { background: var(--color-blue-bg); color: var(--color-blue); border: 1px solid var(--color-blue-bdr); }
+.badge-neutral { background: var(--color-sur2); color: var(--color-txm); border: 1px solid var(--color-bdr2); }
+
+/* Insight chips */
+.chip-warn { background: var(--color-amber-bg); border-color: var(--color-amber-bdr); color: #92400e; }
+.chip-ok { background: var(--color-green-bg); border-color: var(--color-green-bdr); color: #065f46; }
+.chip-alert { background: var(--color-red-bg); border-color: var(--color-red-bdr); color: var(--color-red); }
+.chip-info { background: var(--color-blue-bg); border-color: var(--color-blue-bdr); color: var(--color-blue); }
+.chip-neutral { background: var(--color-sur2); border-color: var(--color-bdr2); color: var(--color-txm); }
+
+/* Stage background tints for table cells */
+.bg-mol { background: rgba(29,111,164,0.04); }
+.bg-fin { background: rgba(124,61,140,0.04); }
+.bg-ins { background: rgba(26,107,74,0.04); }
+.bg-dis { background: rgba(180,83,9,0.04); }
+.bg-def { background: rgba(185,28,28,0.04); }
+
+/* Loader animation */
+@keyframes lpa {
+  0% { width: 0; margin-left: 0; }
+  50% { width: 70%; margin-left: 0; }
+  100% { width: 0; margin-left: 100%; }
+}
+.lp { animation: lpa 1.6s ease-in-out infinite; }
+
+/* Expand toggle */
+.expbtn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; border-radius: 4px;
+  background: var(--color-sur3); color: var(--color-txm);
+  font-size: 9px; transition: transform 0.2s, background 0.1s;
+  flex-shrink: 0; margin-right: 6px; border: 1px solid var(--color-bdr);
+}
+.expbtn.open {
+  transform: rotate(90deg); background: var(--color-ink); color: #fff;
+  border-color: var(--color-ink);
+}
+
+/* Table sticky headers */
+.tview table thead th {
+  position: sticky;
+  z-index: 10;
+}
+.tview table thead tr:first-child th { top: 0; }
+.tview table thead tr:nth-child(2) th { top: 24px; }
+
+/* Print */
+@media print {
+  .no-print { display: none !important; }
+  body { overflow: auto; background: white; }
+  .tview { overflow: visible; height: auto; }
+  table { min-width: 0 !important; }
+  td, th { color: #000 !important; border: 1px solid #ccc !important; font-size: 9px !important; padding: 3px 6px !important; }
+  thead th { background: #f0f0f0 !important; }
+}
