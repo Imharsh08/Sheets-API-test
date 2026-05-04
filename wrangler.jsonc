@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sheet-api-test-01",
+  "compatibility_date": "2026-05-04",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "redesign-management-insight-dashboard"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
